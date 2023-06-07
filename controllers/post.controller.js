@@ -62,6 +62,14 @@ module.exports.createPost = async (req, res) => {
 // si je met :
   // posterId: req.body.posterId,
   // et plus haut dans le fileName a la ligne 40 : req.body.posterId + '_' + Date.now() + '.jpg';
+  // il m'upload 2 fichiers : 1 c'est l'image ( donc aucun problème) mais le second c'est un fichier qui correspond a l'id du posterId
+  // hors si je met tel que c'est actuellement il m'upload l'image mais me sort cette erreur en json dans postman :
+  // {
+  //   "errors": {
+  //     "format": "",
+  //     "maxSize": ""
+  // }
+}
   const newPost = new postModel({
     posterId: req.user._id,
     
