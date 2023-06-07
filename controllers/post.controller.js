@@ -59,9 +59,12 @@ module.exports.createPost = async (req, res) => {
       return res.status(201).json({ errors });
     }
   }
-
+// si je met :
+  // posterId: req.body.posterId,
+  // et plus haut dans le fileName a la ligne 40 : req.body.posterId + '_' + Date.now() + '.jpg';
   const newPost = new postModel({
     posterId: req.user._id,
+    
     message: req.body.message,
     picture: req.file !== null ? '/uploads/posts/' + fileName : '',
     video: req.body.video,
