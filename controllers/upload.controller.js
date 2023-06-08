@@ -41,7 +41,7 @@ module.exports.uploadProfil = async (req, res) => {
 
       res.status(200).json({ message: 'Image uploaded successfully', docs });
     } catch (err) {
-      return res.status(500).send({ message: err });
+      return res.status(500).json({ message: err });
     }
   } catch (err) {
     const errors = uploadErrors(err);

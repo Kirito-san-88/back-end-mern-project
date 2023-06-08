@@ -70,7 +70,9 @@ module.exports.createPost = async (req, res) => {
     return res.status(201).json(post);
   } catch (err) {
     console.log('Error while creating post: ', err);
-    return res.status(500).send('An error occurred while creating the post.');
+    return res
+      .status(500)
+      .json({ message: 'An error occurred while creating the post.' });
   }
 };
 
@@ -145,7 +147,7 @@ module.exports.createPost = async (req, res) => {
 // };
 module.exports.updatePost = async (req, res) => {
   if (!ObjectID.isValid(req.params.id))
-    return res.status(400).send('ID unknown : ' + req.params.id);
+    return res.status(400).json({ message: 'ID unknown : ' + req.params.id });
   const updatedRecord = {
     message: req.body.message,
   };
@@ -158,13 +160,13 @@ module.exports.updatePost = async (req, res) => {
     res.status(200).json({ message: 'Successfully updated.' });
   } catch (err) {
     console.log('Update error : ', err.message);
-    res.status(500).send('An error occurred while updating');
+    res.status(500).json({ message: 'An error occurred while updating' });
   }
 };
 
 module.exports.deletePost = async (req, res) => {
   if (!ObjectID.isValid(req.params.id))
-    return res.status(400).send('ID unknown : ' + req.params.id);
+    return res.status(400).json({ message: 'ID unknown : ' + req.params.id });
   try {
     await PostModel.findByIdAndRemove(req.params.id);
 
@@ -178,7 +180,7 @@ module.exports.deletePost = async (req, res) => {
 
 module.exports.likePost = async (req, res) => {
   if (!ObjectID.isValid(req.params.id))
-    return res.status(400).send('ID unknown : ' + req.params.id);
+    return res.status(400).json({ message: 'ID unknown : ' + req.params.id });
   try {
     await PostModel.findByIdAndUpdate(
       req.params.id,
@@ -197,7 +199,7 @@ module.exports.likePost = async (req, res) => {
 };
 module.exports.unlikePost = async (req, res) => {
   if (!ObjectID.isValid(req.params.id))
-    return res.status(400).send('ID unknown : ' + req.params.id);
+    return res.status(400).json({ message: 'ID unknown : ' + req.params.id });
 
   try {
     await PostModel.findByIdAndUpdate(
@@ -221,7 +223,7 @@ module.exports.unlikePost = async (req, res) => {
 
 module.exports.commentPost = async (req, res) => {
   if (!ObjectID.isValid(req.params.id))
-    return res.status(400).send('ID unknown : ' + req.params.id);
+    return res.status(400).json({ message: 'ID unknown : ' + req.params.id });
   try {
     const docs = await PostModel.findByIdAndUpdate(
       req.params.id,
@@ -246,23 +248,26 @@ module.exports.commentPost = async (req, res) => {
 };
 module.exports.editCommentPost = async (req, res) => {
   if (!ObjectID.isValid(req.params.id))
-    return res.status(400).send('ID unknown : ' + req.params.id);
+    return res.status(400).json({ message: 'ID unknown : ' + req.params.id });
   try {
     const docs = await PostModel.findById(req.params.id);
     const theComment = docs.comments.find((comment) =>
       comment._id.equals(req.body.commentId)
     );
-    if (!theComment) return res.status(404).send('Comment not found');
+    if (!theComment)
+      return res.status(404).json({ message: 'Comment not found' });
     theComment.text = req.body.text;
     await docs.save();
     res.status(200).send(docs);
   } catch (err) {
-    return res.status(400).send('An error occurred while editing the comment');
+    return res
+      .status(400)
+      .json({ message: 'An error occurred while editing the comment' });
   }
 };
 module.exports.deleteCommentPost = async (req, res) => {
   if (!ObjectID.isValid(req.params.id))
-    return res.status(400).send('ID unknown : ' + req.params.id);
+    return res.status(400).json({ message: 'ID unknown : ' + req.params.id });
 
   try {
     await PostModel.findByIdAndUpdate(
@@ -278,6 +283,8 @@ module.exports.deleteCommentPost = async (req, res) => {
     );
     res.status(200).json({ message: 'Successfully deleted the comment.' });
   } catch (err) {
-    return res.status(400).send('An error occurred while deleting the comment');
+    return res
+      .status(400)
+      .json({ message: 'An error occurred while deleting the comment' });
   }
 };
