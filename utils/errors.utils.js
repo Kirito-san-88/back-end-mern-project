@@ -27,14 +27,23 @@ module.exports.signInErrors = (err) => {
   return errors;
 };
 
-module.exports.uploadErrors = (err) => {
-  let errors = { format: '', maxSize: '' };
+module.exports.uploadErrors = (file) => {
+  //   let errors = {};
 
-  if (err.message.includes('invalid file format'))
+  //   if (err && err.message && err.message.includes('invalid file format'))
+  //     errors.format = 'Format incompatible';
+
+  //   if (err && err.message && err.message.includes('file size exceeded'))
+  //     errors.maxSize = 'Le fichier dépasse 500ko';
+
+  //   return errors;
+  // };
+  let errors = {};
+
+  if (!file) {
     errors.format = 'Format incompatible';
-
-  if (err.message.includes('file size exceeded'))
     errors.maxSize = 'Le fichier dépasse 500ko';
+  }
 
   return errors;
 };
