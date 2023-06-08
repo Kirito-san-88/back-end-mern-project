@@ -3,10 +3,10 @@ const postModel = require('../models/post.model');
 const UserModel = require('../models/user.model');
 const ObjectID = require('mongoose').Types.ObjectId;
 const fs = require('fs');
-const { promisify } = require('util');
-const { uploadErrors } = require('../utils/errors.utils');
-const pipeline = promisify(require('stream').pipeline);
-const path = require('path');
+// const { promisify } = require('util');
+// const { uploadErrors } = require('../utils/errors.utils');
+// const pipeline = promisify(require('stream').pipeline);
+// const path = require('path');
 
 module.exports.readPost = async (req, res) => {
   try {

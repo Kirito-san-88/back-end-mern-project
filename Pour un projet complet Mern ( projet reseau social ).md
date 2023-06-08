@@ -12,3 +12,4 @@ pour initialiser le projet lancer les commandes suivante :
 - npm i -s jsonwebtoken ( pour installer JWT pour genere un token a l'utilisateur)
 - npm i -s cookie-parser ( pour recuperer les cookies)
 - npm i -s multer ( pour installer l'upload d'image).
+- npm i -s cors ( pour installer cors).

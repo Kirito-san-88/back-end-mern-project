@@ -27,23 +27,23 @@ module.exports.signInErrors = (err) => {
   return errors;
 };
 
-module.exports.uploadErrors = (file) => {
-  //   let errors = {};
+// module.exports.uploadErrors = (file) => {
+//   //   let errors = {};
 
-  //   if (err && err.message && err.message.includes('invalid file format'))
-  //     errors.format = 'Format incompatible';
+//   //   if (err && err.message && err.message.includes('invalid file format'))
+//   //     errors.format = 'Format incompatible';
 
-  //   if (err && err.message && err.message.includes('file size exceeded'))
-  //     errors.maxSize = 'Le fichier dépasse 500ko';
+//   //   if (err && err.message && err.message.includes('file size exceeded'))
+//   //     errors.maxSize = 'Le fichier dépasse 500ko';
 
-  //   return errors;
-  // };
-  let errors = {};
+//   //   return errors;
+//   // };
+//   const errors = {};
 
-  if (!file) {
-    errors.format = 'Format incompatible';
-    errors.maxSize = 'Le fichier dépasse 500ko';
-  }
+//   if (!file) {
+//     errors.format = 'Format incompatible';
+//     errors.maxSize = 'Le fichier dépasse 500ko';
+//   }
 
-  return errors;
-};
+//   return errors;
+// };
