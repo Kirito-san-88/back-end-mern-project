@@ -11,7 +11,7 @@ const app = express();
 
 const corsOptions = {
   origin: process.env.CLIENT_URL,
-  Credential: true,
+  credentials: true,
   allowedHeaders: ['sessionId', 'Content-Type'],
   exposedHeaders: ['sessionId'],
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
@@ -37,6 +37,6 @@ app.use('/api/user', userRoutes);
 app.use('/api/post', postRoutes);
 
 //server
-app.listen(process.env.PORT, () => {
-  console.log(`Listening on port ${process.env.PORT}`);
+app.listen(process.env.PORT || 3000, () => {
+  console.log(`Listening on port ${process.env.PORT} || 3000`);
 });

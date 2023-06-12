@@ -1,5 +1,7 @@
 pour initialiser le projet lancer les commandes suivante :
 
+Partie Back-end:
+
 - npm init -y ( pour initaliser le package.json)
 - npm i -s express nodemon dotenv ( pour installer express, nodemon et dotenv ( variable d'environnement))
 - npm i -s mongoose ( pour installer mongodb dans le projet).
